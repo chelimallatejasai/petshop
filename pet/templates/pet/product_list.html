@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Products - PetShop{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Our Products</h1>
+        <p>Find everything your pet needs</p>
+    </div>
+</section>
+
+<section class="products-section">
+    <div class="container">
+        <div class="products-layout">
+            <aside class="filters-sidebar">
+                <h3>Filter Products</h3>
+                <div class="filter-group">
+                    <h4>Categories</h4>
+                    <label><input type="checkbox"> Food (12)</label>
+                    <label><input type="checkbox"> Toys (8)</label>
+                    <label><input type="checkbox"> Housing (5)</label>
+                    <label><input type="checkbox"> Accessories (15)</label>
+                    <label><input type="checkbox"> Care (10)</label>
+                </div>
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <label><input type="checkbox"> Under $20</label>
+                    <label><input type="checkbox"> $20 - $50</label>
+                    <label><input type="checkbox"> $50 - $100</label>
+                    <label><input type="checkbox"> Over $100</label>
+                </div>
+                <div class="filter-group">
+                    <h4>Pet Type</h4>
+                    <label><input type="checkbox"> Dogs</label>
+                    <label><input type="checkbox"> Cats</label>
+                    <label><input type="checkbox"> Birds</label>
+                    <label><input type="checkbox"> Fish</label>
+                </div>
+            </aside>
+
+            <div class="products-content">
+                <div class="products-header">
+                    <div class="results-info">
+                        <span>Showing {{ products|length }} products</span>
+                    </div>
+                    <div class="sort-options">
+                        <select>
+                            <option>Sort by: Featured</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Name: A to Z</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="products-grid">
+                    {% for product in products %}
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/placeholder.svg?height=250&width=250" alt="{{ product.name }}">
+                            <div class="product-overlay">
+                                <button class="btn btn-icon"><i class="fas fa-heart"></i></button>
+                                <button class="btn btn-icon"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">{{ product.category }}</span>
+                            <h3>{{ product.name }}</h3>
+                            <p class="price">${{ product.price }}</p>
+                            <div class="product-actions">
+                                <a href="{% url 'pet:product_detail' product.id %}" class="btn btn-secondary">View Details</a>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="pagination">
+                    <a href="#" class="page-link">&laquo; Previous</a>
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link">Next &raquo;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PetShop - Your Pet's Best Friend{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'pet/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="{% url 'pet:home' %}">
+                        <i class="fas fa-paw"></i>
+                        <span>PetShop</span>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="{% url 'pet:home' %}" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'pet:product_list' %}" class="nav-link">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'pet:contact' %}" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'pet:checkout' %}" class="nav-link cart-link">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">2</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>PetShop</h3>
+                <p>Your trusted partner in pet care. We provide quality products for all your pet needs.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{% url 'pet:home' %}">Home</a></li>
+                    <li><a href="{% url 'pet:product_list' %}">Products</a></li>
+                    <li><a href="{% url 'pet:contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">Dog Supplies</a></li>
+                    <li><a href="#">Cat Supplies</a></li>
+                    <li><a href="#">Bird Supplies</a></li>
+                    <li><a href="#">Fish Supplies</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@petshop.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Pet Street, City, State</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 PetShop. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

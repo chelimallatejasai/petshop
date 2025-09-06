@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} - PetShop{% endblock %}
+
+{% block content %}
+<section class="product-detail">
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="{% url 'pet:home' %}">Home</a>
+            <span>/</span>
+            <a href="{% url 'pet:product_list' %}">Products</a>
+            <span>/</span>
+            <span>{{ product.name }}</span>
+        </nav>
+
+        <div class="product-layout">
+            <div class="product-images">
+                <div class="main-image">
+                    <img src="/placeholder.svg?height=500&width=500" alt="{{ product.name }}">
+                </div>
+                <div class="thumbnail-images">
+                    <img src="/placeholder.svg?height=100&width=100" alt="Thumbnail 1">
+                    <img src="/placeholder.svg?height=100&width=100" alt="Thumbnail 2">
+                    <img src="/placeholder.svg?height=100&width=100" alt="Thumbnail 3">
+                </div>
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">{{ product.category }}</span>
+                <h1>{{ product.name }}</h1>
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span>(24 reviews)</span>
+                </div>
+                <p class="price">${{ product.price }}</p>
+                <p class="description">{{ product.description }}</p>
+
+                <div class="product-features">
+                    <h3>Key Features:</h3>
+                    <ul>
+                        {% for feature in product.features %}
+                        <li>{{ feature }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="product-options">
+                    <div class="quantity-selector">
+                        <label>Quantity:</label>
+                        <div class="quantity-controls">
+                            <button type="button" class="qty-btn">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button type="button" class="qty-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-actions">
+                    <button class="btn btn-primary btn-large">Add to Cart</button>
+                    <button class="btn btn-secondary btn-large">Buy Now</button>
+                    <button class="btn btn-icon-only"><i class="fas fa-heart"></i></button>
+                </div>
+
+                <div class="product-meta">
+                    <p><strong>SKU:</strong> PET-{{ product.id|stringformat:"03d" }}</p>
+                    <p><strong>Category:</strong> {{ product.category }}</p>
+                    <p><strong>Availability:</strong> <span class="in-stock">In Stock</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="description">Description</button>
+                <button class="tab-btn" data-tab="reviews">Reviews (24)</button>
+                <button class="tab-btn" data-tab="shipping">Shipping Info</button>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="description">
+                    <h3>Product Description</h3>
+                    <p>{{ product.description }}</p>
+                    <p>This premium product is designed with your pet's health and happiness in mind. Made from high-quality materials and tested for safety, it's the perfect choice for pet owners who want the best for their furry friends.</p>
+                </div>
+                <div class="tab-pane" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    <div class="review">
+                        <div class="review-header">
+                            <strong>Sarah M.</strong>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p>Excellent quality! My dog loves it and I can see the difference in his energy levels.</p>
+                    </div>
+                </div>
+                <div class="tab-pane" id="shipping">
+                    <h3>Shipping Information</h3>
+                    <p>Free shipping on orders over $50. Standard delivery takes 3-5 business days.</p>
+                    <p>Express shipping available for next-day delivery.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="related-products">
+    <div class="container">
+        <h2>Related Products</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="/placeholder.svg?height=200&width=200" alt="Dog Treats">
+                </div>
+                <div class="product-info">
+                    <h3>Premium Dog Treats</h3>
+                    <p class="price">$12.99</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="/placeholder.svg?height=200&width=200" alt="Dog Bowl">
+                </div>
+                <div class="product-info">
+                    <h3>Stainless Steel Bowl</h3>
+                    <p class="price">$18.99</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="/placeholder.svg?height=200&width=200" alt="Dog Collar">
+                </div>
+                <div class="product-info">
+                    <h3>Adjustable Collar</h3>
+                    <p class="price">$24.99</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
